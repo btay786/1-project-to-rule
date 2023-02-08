@@ -1,11 +1,10 @@
 var pageNumber = document.getElementById('page-number');
-var isbnKey = "ISBN:9780980200447";
 
 // https://openlibrary.org/api/books?bibkeys={ISBN:9780980200447}&jscmd=data&format=json
 // Must be "ISBN:00000000000000"
 
 var getPageNumber = function(){
-    var apiUrl = "https://openlibrary.org/api/books?bibkeys=" +isbnKey+ "&jscmd=data&format=json";
+    var apiUrl = "https://openlibrary.org/api/books?bibkeys=ISBN:9780980200447&jscmd=data&format=json";
     fetch(apiUrl)
         
         .then(function(response){
