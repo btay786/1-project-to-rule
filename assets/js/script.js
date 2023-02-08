@@ -1,5 +1,11 @@
 var pageNumber = document.getElementById('page-number');
 var isbnKey = "ISBN:9780980200447";
+
+var totalNumberOfPages = [];
+var readingSpeed = 30; // 30 pages per hours
+var readingDays = (totalNumberOfPages/readingSpeed);
+
+
 // https://openlibrary.org/api/books?bibkeys={ISBN:9780980200447}&jscmd=data&format=json
 // Must be "ISBN:00000000000000"
 var getPageNumber = function(){
@@ -12,16 +18,16 @@ var getPageNumber = function(){
         .then(function(data){
             console.log("page number: " + data[isbnKey].number_of_pages);
             var total = document.createElement('h2'); // create a paragraph
-
-            total.textContent = "number of page is " + data[isbnKey].number_of_pages;
+            var bookPageNumber = data[isbnKey].number_of_pages;
+            total.textContent = "number of page is " + bookPageNumber;
             pageNumber.appendChild(total);
+            totalNumberOfPages.append(bookPageNumber);
         });
     console.log(apiUrl)
 }
 
 // get ISBN from url
-// 
-
+// need to intergrate with the autocomplete search
 function checkISBN(selectedURL){
     if(selectedURL.includes("ISBN")){
         var isbnNum = document.createElement('h3');
@@ -29,6 +35,8 @@ function checkISBN(selectedURL){
         pageNumber.appendChild(isbnNum);
     }
 };
+
+
 
 $(document).ready(function () {  // only begin once page has loaded
     $("#txtBookSearch").autocomplete({ // attach auto-complete functionality to textbox
@@ -67,10 +75,10 @@ $(document).ready(function () {  // only begin once page has loaded
             $('#divDescription').empty();
             // we get the currently selected item using ui.item
             // show a pic if we have one
-            if (item.image != '')
-            {
-                $('#divDescription').append('<img src="' + ui.item.image + '" style="float: left; padding: 10px;">');
-            }
+            // if (item.image != '')
+            // {
+            //     $('#divDescription').append('<img src="' + ui.item.image + '" style="float: left; padding: 10px;">');
+            // }
             // and title, author, and year
             $('#divDescription').append('<p><b>Title:</b> ' + ui.item.title  + '</p>');
             $('#divDescription').append('<p><b>Author:</b> ' + ui.item.author  + '</p>');
