@@ -26,10 +26,7 @@ var getPageNumber = function(){
 
 function checkISBN(selectedURL){
     if(selectedURL.includes("ISBN")){
-        
         var isbnNum = document.createElement('h3');
-        
-        
         isbnNum.textContent = "Inside checkISBN: " + selectedURL.substring(42,60);
         pageNumber.appendChild(isbnNum);
     }
