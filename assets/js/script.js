@@ -1,4 +1,11 @@
 var pageNumber = document.getElementById('page-number');
+
+var isbnKey = "ISBN:9780980200447";
+
+var totalNumberOfPages = [];
+var readingSpeed = 30; // 30 pages per hours
+var readingDays = (totalNumberOfPages/readingSpeed);
+
 // totalNumberOfPages will be a concatonation of the book collection
 var totalNumberOfPages = [''];
 // can be changed later to diffent speeds
