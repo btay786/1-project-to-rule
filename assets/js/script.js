@@ -1,11 +1,12 @@
 var pageNumber = document.getElementById('page-number');
-booknumber
+
 var isbnKey = "ISBN:9780980200447";
 
 var totalNumberOfPages = [];
 var readingSpeed = 30; // 30 pages per hours
 var readingDays = (totalNumberOfPages/readingSpeed);
-=======
+
+
 // totalNumberOfPages will be a concatonation of the book collection
 var totalNumberOfPages = ['']
 // can be changed later to diffent speeds
@@ -15,27 +16,12 @@ var readingDays = totalNumberOfPages/readingSpeed
 var selectedBook = $('#txtBookSearch');
 
 
-dev
+
 
 
 // https://openlibrary.org/api/books?bibkeys={ISBN:9780980200447}&jscmd=data&format=json
 // Must be "ISBN:00000000000000"
-booknumber
-var getPageNumber = function(){
-    var apiUrl = "https://openlibrary.org/api/books?bibkeys="+isbnKey+"&jscmd=data&format=json";
-    fetch(apiUrl)
-        
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            console.log("page number: " + data[isbnKey].number_of_pages);
-            var total = document.createElement('h2'); // create a paragraph
-            var bookPageNumber = data[isbnKey].number_of_pages;
-            total.textContent = "number of page is " + bookPageNumber;
-            pageNumber.appendChild(total);
-            totalNumberOfPages.append(bookPageNumber);
-=======
+
 
 $(document).ready(function () {  // only begin once page has loaded
     $("#txtBookSearch").autocomplete({ // attach auto-complete functionality to textbox
@@ -121,12 +107,12 @@ $(document).ready(function () {  // only begin once page has loaded
                         pageNumber.appendChild(isbnNum);
                     }
                 };
-                getPageNumber();
-                checkISBN(apiUrl);
+               // getPageNumber();
+                //checkISBN(apiUrl);
                 console.log(isbnKey);
             },
             minLength: 5 // set minimum length of text the user must enter
-dev
+
         });
     });
     
@@ -145,17 +131,6 @@ dev
   
 //       var repoEl = document.createElement('div');
 //       repoEl.classList = 'list-item flex-row justify-space-between align-center';
-
-booknumber
-// get ISBN from url
-// need to intergrate with the autocomplete search
-function checkISBN(selectedURL){
-    if(selectedURL.includes("ISBN")){
-        var isbnNum = document.createElement('h3');
-        isbnNum.textContent = "Inside checkISBN: " + selectedURL.substring(42,60);
-        pageNumber.appendChild(isbnNum);
-    }
-};
 
 
 
@@ -221,9 +196,8 @@ var apiUrl = "https://openlibrary.org/api/books?bibkeys=ISBN:9780980200447&jscmd
 
 
 
-getPageNumber();
-checkISBN(apiUrl);
-=======
+
+
 //       var titleEl = document.createElement('span');
 //       titleEl.textContent = repoName;
 
@@ -249,4 +223,4 @@ var apiUrl = "https://openlibrary.org/api/books?bibkeys=ISBN:9780980200447&jscmd
 // use later
 // searchBtn.addEventListener(‘click’, getCity)
 // =====================================================================
-dev
+
