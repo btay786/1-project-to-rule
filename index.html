@@ -1,42 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    
+
     <link rel="stylesheet" href="./assets/css/style.css">
     <title> Bookworms </title>
-    </head>
+</head>
 
 <body>
     <header class="hero has-background-warning-dark">
         <div class="hero-body">
-           
-        <p class="title has-text-centered"> Your Digital Bookshelf 📖 </p>
+
+            <p class="title has-text-centered"> Your Digital Bookshelf 📖 </p>
         </div>
     </header>
-<main><h1>auto-complete book search example</h1>
-    <p>
-        <label for="txtBookSearch">Enter a book title and Select from list</label>
-        
-        <input id="txtBookSearch" type="text">
-    </p>
-    <div class="card">
-        <div class="card-content">
-            <div class="content">
-                Book Details
-            </p>    
-        
+    <main>
 
-    </div>    
-    <h2>book details</h2>
-    <div id="divDescription"></div>
-</main>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script src="./assets/js/script.js"></script>
+        <div class="card">
+            <label for="txtBookSearch">Enter a book title and Select from list</label>
+
+            <input id="txtBookSearch" type="text">
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="content">
+                            Book Details
+                        </p>
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+                    <div id="divDescription"></div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <p class="content">
+                            Time Frame to read books
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="column">
+                <table class="table is-fullwidth is-striped">
+                    <thead>
+                        <tr>
+                            <th><abbr>Book Title</abbr></th>
+                            <th><abbr>#pages</abbr></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
-</html> 
+
+</html>
