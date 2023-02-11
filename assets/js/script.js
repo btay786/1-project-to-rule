@@ -4,6 +4,14 @@ var bookCountSpan = document.querySelector("#book-count");
 var books = [];
 
 var pageNumber = document.getElementById('page-number');
+
+var isbnKey = "ISBN:9780980200447";
+
+var totalNumberOfPages = [];
+var readingSpeed = 30; // 30 pages per hours
+var readingDays = (totalNumberOfPages/readingSpeed);
+
+
 // totalNumberOfPages will be a concatonation of the book collection
 var totalNumberOfPages = ['']
 // can be changed later to diffent speeds
@@ -15,8 +23,10 @@ var selectedBook = $('#txtBookSearch');
 
 
 
+
 // https://openlibrary.org/api/books?bibkeys={ISBN:9780980200447}&jscmd=data&format=json
 // Must be "ISBN:00000000000000"
+
 
 $(document).ready(function () {  // only begin once page has loaded
     $("#txtBookSearch").autocomplete({ // attach auto-complete functionality to textbox
@@ -128,6 +138,7 @@ $(document).ready(function () {  // only begin once page has loaded
                 console.log(isbnKey);
             },
             minLength: 5 // set minimum length of text the user must enter
+
         });
     });
     function renderBooks() {
@@ -193,3 +204,4 @@ var apiUrl = "https://openlibrary.org/api/books?bibkeys=ISBN:9780980200447&jscmd
 // use later
 // searchBtn.addEventListener(‘click’, getCity)
 // =====================================================================
+
