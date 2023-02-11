@@ -88,7 +88,7 @@ $(document).ready(function () {  // only begin once page has loaded
                             console.log(data);
                             var total = document.createElement('h2'); // create a paragraph
                             
-                            total.textContent = "number of page is " + data[isbnKey].number_of_pages;
+                            total.textContent = "number of page is " + data.number_of_pages;
                             pageNumber.appendChild(total);
                         });
                     console.log(apiUrl)
