@@ -1,3 +1,8 @@
+var bookInput = document.querySelector("#book-text");
+var bookList = document.querySelector("#book-list");
+var bookCountSpan = document.querySelector("#book-count");
+var books = [];
+
 var pageNumber = document.getElementById('page-number');
 // totalNumberOfPages will be a concatonation of the book collection
 var totalNumberOfPages = ['']
@@ -66,81 +71,123 @@ $(document).ready(function () {  // only begin once page has loaded
                     $('#divDescription').append('<P><b>ISBN:</b> ' + ui.item.isbn[0].identifier + '</p>');
                     $('#divDescription').append('<a href="http://www.worldcat.org/isbn/' + ui.item.isbn[0].identifier + '" target="_blank">View item on worldcat</a>');
                 }
+                
+                // Add new bookText to books array, clear the input
+                
+                // Store updated books in localStorage, re-render the list
+                
                 var isbnKey = "ISBN:"+ String(ui.item.isbn[0].identifier);
                 var getPageNumber = function(){
                     var apiUrl = "https://openlibrary.org/api/books?bibkeys="+isbnKey+"&jscmd=data&format=json";
                     fetch(apiUrl)
+                    var numberOfPages = 0
                     
                     .then(function(response){
                         return response.json();
-                        })
-                        .then(function(data){
-                            console.log("page number: " + data[isbnKey].number_of_pages);
-                            var total = document.createElement('h2'); // create a paragraph
-                            
-                            total.textContent = "number of page is " + data[isbnKey].number_of_pages;
-                            pageNumber.appendChild(total);
-                        });
+                    })
+                    .then(function(data){
+                        console.log(data[isbnKey].number_of_pages);
+                        var total = document.createElement('h2'); // create a paragraph
+                        
+                        total.textContent = "number of page is " + data[isbnKey].number_of_pages;
+                        // pageNumber.appendChild(total);
+                        numberOfPages = data[isbnKey].number_of_pages
+                        return numberOfPages
+                    });
                     console.log(apiUrl)
                 }
                 
-                // get ISBN from url
-                // 
+                console.log(numberOfPages)
                 
-                function checkISBN(selectedURL){
-                    if(selectedURL.includes("ISBN")){
+                // Add submit event to form
+                
+                
+                
+                
+                // 
+                  
+                // get ISBN from url
+                // function checkISBN(selectedURL){
+                //       if(selectedURL.includes("ISBN")){
+                          
+                //         var isbnNum = document.createElement('h3');
                         
-                        var isbnNum = document.createElement('h3');
                         
-                        
-                        isbnNum.textContent = "Inside checkISBN: " + selectedURL.substring(42,60);
-                        pageNumber.appendChild(isbnNum);
-                    }
-                };
+                //         isbnNum.textContent = "Inside checkISBN: " + selectedURL.substring(42,60);
+                //         pageNumber.appendChild(isbnNum);
+                //     }
+                // };
+                var bookText = ui.item.title + numberOfPages
+                console.log(bookText)
+                books.push(bookText);
+                
+                storeBooks();
+                renderBooks();
                 getPageNumber();
-                checkISBN(apiUrl);
+                // checkISBN(apiUrl);
                 console.log(isbnKey);
             },
             minLength: 5 // set minimum length of text the user must enter
         });
     });
+    function renderBooks() {
+        // Clear bookList element and update bookCountSpan
+        bookList.innerHTML = "";
+        bookCountSpan.textContent = books.length;
+      
+        // Render a new li for each book
+        for (var i = 0; i < books.length; i++) {
+          var book = books[i];
+      
+          var li = document.createElement("li");
+          li.textContent = book;
+          li.setAttribute("data-index", i);
+      
+          var button = document.createElement("button");
+          button.textContent = "Delete ❌";
+      
+          li.appendChild(button);
+          bookList.appendChild(li);
+        }
+      }
+      // Calls init to retrieve data and render it to the page on load
+      init()
+    // Add click event to bookList element
+    function init() {
+        // Get stored books from localStorage
+      var storedBooks = JSON.parse(localStorage.getItem("books"));
     
-    // var displayRepos = function (repos, searchTerm) {
-        //     if (repos.length === 0) {
-            //       repoContainerEl.textContent = 'No repositories found.';
-            //       // Without a `return` statement, the rest of this function will continue to run and perhaps throw an error if `repos` is empty
-            //       return;
-            //     }
-            
-            //     repoSearchTerm.textContent = searchTerm;
-            
-//     for (var i = 0; i < repos.length; i++) {
-    //       // The result will be `<github-username>/<github-repository-name>`
-//       var bookName = repos[i].owner.login + '/' + repos[i].name;
-  
-//       var repoEl = document.createElement('div');
-//       repoEl.classList = 'list-item flex-row justify-space-between align-center';
-
-//       var titleEl = document.createElement('span');
-//       titleEl.textContent = repoName;
-
-//       repoEl.appendChild(titleEl);
-
-//       var statusEl = document.createElement('span');
-//       statusEl.classList = 'flex-row align-center';
-
-//       if (repos[i].open_issues_count > 0) {
-    //         statusEl.innerHTML =
-    //           "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
-    //       } else {
-        //         statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-        //       }
+      // If books were retrieved from localStorage, update the books array to it
+      if (storedBooks !== null) {
+          books = storedBooks;
+        }
         
-        //       repoEl.appendChild(statusEl);
+        // This is a helper function that will render books to the DOM
+        renderBooks();
+    }
+    
+    function storeBooks() {
+        // Stringify and set key in localStorage to books array
+      localStorage.setItem("books", JSON.stringify(books));
+    }
+    bookList.addEventListener("click", function(event) {
+        var element = event.target;
         
-        //       repoContainerEl.appendChild(repoEl);
-//     }
-//   };
+        // Checks if element is a button
+        if (element.matches("button") === true) {
+          // Get its data-index value and remove the book element from the list
+          var index = element.parentElement.getAttribute("data-index");
+          books.splice(index, 1);
+          
+          // Store updated books in localStorage, re-render the list
+          storeBooks();
+          renderBooks();
+        }
+    });
+
+    // Create a function that will read the local storage and create entries into personal library.
+    //   ================================================================================================================================================================================  // 
+    
 var apiUrl = "https://openlibrary.org/api/books?bibkeys=ISBN:9780980200447&jscmd=data&format=json";
 // ======================================================================
 // use later
