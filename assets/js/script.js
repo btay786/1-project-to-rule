@@ -89,7 +89,7 @@ $(document).ready(function () {  // only begin once page has loaded
                             var total = document.createElement('h2'); // create a paragraph
                             
                             total.textContent = "number of page is " + data[isbnKey].number_of_pages;
-                            //pageNumber.appendChild(total);
+                            pageNumber.appendChild(total);
                         });
                     console.log(apiUrl)
                 }
