@@ -1,4 +1,3 @@
-var pageNumber = document.getElementById('page-number');
 
 var isbnKey = "ISBN:9780980200447";
 
@@ -86,10 +85,14 @@ $(document).ready(function () {  // only begin once page has loaded
                         })
                         .then(function(data){
                             console.log(data);
-                            var total = document.createElement('h2'); // create a paragraph
+                            var pageNumber = $('#page-number');
+                            console.log ("<tr><td>" + data[isbnKey].title + "</td><td>" + data[isbnKey].number_of_pages + "</td><td>" + data[isbnKey].pagination + "</td></tr>")
+                            var rowHTML = "<tr><td>" + data[isbnKey].title + "</td><td>" + data[isbnKey].number_of_pages + "</td><td>" + data[isbnKey].pagination + "</td></tr>"
+                            //var total = document.createElement('h2'); // create a paragraph
                             
-                            total.textContent = "number of page is " + data.number_of_pages;
-                            pageNumber.appendChild(total);
+                            //total.textContent = "number of page is " + data[isbnKey].number_of_pages;
+                            
+                            pageNumber.html(rowHTML);
                         });
                     console.log(apiUrl)
                 }
@@ -104,7 +107,7 @@ $(document).ready(function () {  // only begin once page has loaded
                         
                         
                         isbnNum.textContent = "Inside checkISBN: " + selectedURL.substring(42,60);
-                        pageNumber.appendChild(isbnNum);
+                        //pageNumber.appendChild(isbnNum);
                     }
                 };
                 getPageNumber();
