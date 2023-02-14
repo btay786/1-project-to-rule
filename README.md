@@ -1,4 +1,4 @@
-# Bookworms
+# Bookemons
 
 ## Description
 
@@ -20,9 +20,9 @@ The power that's inside ♪
 
 ## User Story 
 
-<li> AS AN
-<li> I WANT
-<li> SO THAT I 
+AS A Pokemon and book lover <br>
+I WANT to add randomized Pokemons and my favorite books to a reading timeline <br>
+SO THAT I can see how many pages my Pokemon and I need to read everyday <br>
 
 
 ## Links
