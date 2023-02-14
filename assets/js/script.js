@@ -78,6 +78,7 @@ $(document).ready(function () {  // only begin once page has loaded
                 var isbnKey = "ISBN:"+ String(ui.item.isbn[0].identifier);
                 var getPageNumber = function(){
                     var apiUrl = "https://openlibrary.org/api/books?bibkeys="+isbnKey+"&jscmd=data&format=json";
+                    getpokemonImage();
                     fetch(apiUrl)
                     
                     .then(function(response){
@@ -118,7 +119,18 @@ $(document).ready(function () {  // only begin once page has loaded
 
         });
     });
-    
+    function getpokemonImage() {
+        
+        fetch('https://pokeapi.co/api/v2/pokemon/ditto').then((response) => response.json()).then((data) => {
+          console.log(data);
+          var pokeimage = document.createElement('img')
+        pokeimage.src = data.sprites.front_default
+        console.log (data.sprites.front_default)
+        document.querySelector("#pokemonImage").append(pokeimage)
+        }).catch((err) => {
+          console.log('pokemon not found', err);
+        })
+      }
     // var displayRepos = function (repos, searchTerm) {
         //     if (repos.length === 0) {
             //       repoContainerEl.textContent = 'No repositories found.';
