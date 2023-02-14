@@ -1,9 +1,11 @@
+
 var bookInput = document.querySelector("#book-text");
 var bookList = document.querySelector("#book-list");
 var bookCountSpan = document.querySelector("#book-count");
 var books = [];
 
 var pageNumber = document.getElementById('page-number');
+
 
 var isbnKey = "ISBN:9780980200447";
 
@@ -94,6 +96,7 @@ $(document).ready(function () {  // only begin once page has loaded
                     
                     .then(function(response){
                         return response.json();
+
                     })
                     .then(function(data){
                         console.log(data[isbnKey].number_of_pages);
@@ -104,6 +107,20 @@ $(document).ready(function () {  // only begin once page has loaded
                         numberOfPages = data[isbnKey].number_of_pages
                         return numberOfPages
                     });
+
+                        })
+                        .then(function(data){
+                            console.log(data);
+                            var pageNumber = $('#page-number');
+                            console.log ("<tr><td>" + data[isbnKey].title + "</td><td>" + data[isbnKey].number_of_pages + "</td><td>" + data[isbnKey].pagination + "</td></tr>")
+                            var rowHTML = "<tr><td>" + data[isbnKey].title + "</td><td>" + data[isbnKey].number_of_pages + "</td><td>" + data[isbnKey].pagination + "</td></tr>"
+                            //var total = document.createElement('h2'); // create a paragraph
+                            
+                            //total.textContent = "number of page is " + data[isbnKey].number_of_pages;
+                            
+                            pageNumber.html(rowHTML);
+                        });
+
                     console.log(apiUrl)
                 }
                 
@@ -122,7 +139,7 @@ $(document).ready(function () {  // only begin once page has loaded
                           
                 //         var isbnNum = document.createElement('h3');
                         
-                        
+
                 //         isbnNum.textContent = "Inside checkISBN: " + selectedURL.substring(42,60);
                 //         pageNumber.appendChild(isbnNum);
                 //     }
@@ -133,6 +150,12 @@ $(document).ready(function () {  // only begin once page has loaded
                 
                 storeBooks();
                 renderBooks();
+
+                        isbnNum.textContent = "Inside checkISBN: " + selectedURL.substring(42,60);
+                        //pageNumber.appendChild(isbnNum);
+                    }
+                };
+
                 getPageNumber();
                 // checkISBN(apiUrl);
                 console.log(isbnKey);

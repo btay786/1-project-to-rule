@@ -19,12 +19,21 @@
             <p class="title has-text-centered"> Your Digital Bookshelf 📖 </p>
         </div>
     </header>
-    <main>
+    <main class="container">
+
 
         <div class="card">
-            <label for="txtBookSearch">Enter a book title and Select from list</label>
+            <div class="card-content">
+                <div class="field">
+                    <label class="label">Enter a book title and Select from list</label>
+                    <div class="control">
+                        <input class="input" id="txtBookSearch" type="text">
+                    </div>
+                </div>
+            </div>
+            
 
-            <input id="txtBookSearch" type="text">
+            
         </div>
         <div class="columns">
             <div class="column">
@@ -44,28 +53,45 @@
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <p class="content">
-                            Time Frame to read books
-                        </p>
+                        
+
+                        <div class="field">
+                            <label class="label">Start Date</label>
+                            <div class="control">
+                                <input class="input" type="date">
+
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Finish Date</label>
+                            <div class="control">
+                                <input class="input" type="date">
+
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>
 
                 <button class="button is-submit is-fullwidth is-primary is-large">Enter Number of pages read</button>
 
-            
+
             </div>
 
             <div class="column">
-                <table class="table is-fullwidth is-striped">
+                <table class="table is-fullwidth is-striped" id="table">
+
                     <thead>
                         <tr>
                             <th><abbr>Book Title</abbr></th>
-                            <th id="page-number"><abbr># of pages</abbr></th>
-                        
+                            <th><abbr># of pages</abbr></th>
                             <th><abbr> Pokemon </abbr></th>
                         </tr>
                     </thead>
+                    <tbody id="page-number">
+
+                    </tbody>
                 </table>
             </div>
         </div>
