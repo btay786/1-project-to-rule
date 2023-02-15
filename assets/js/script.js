@@ -1,7 +1,7 @@
 
 var isbnKey = "ISBN:9780980200447";
 
-var totalNumberOfPages = [];
+var totalNumberOfPages = 0;
 var readingSpeed = 30; // 30 pages per hours
 var readingDays = (totalNumberOfPages/readingSpeed);
 
@@ -32,7 +32,14 @@ $(document).ready(function () {  // only begin once page has loaded
                 url: booksUrl,
                 dataType: "jsonp",
                 success: function(data) {
+                    console.log (data)
                     response($.map(data.items, function (item) {
+                        if(item.volumeInfo.title && item.volumeInfo.pageCount){
+                            //var pageNumber = $('#page-number');
+                            totalNumberOfPages = item.volumeInfo.pageCount;
+                            //var rowHTML = "<tr><td>" + item.volumeInfo.title + "</td><td>" + item.volumeInfo.pageCount + "</td><td>" + "</td></tr>";
+                            //pageNumber.html(pageNumber.html() + rowHTML);
+                        }
                         if (item.volumeInfo.authors && item.volumeInfo.title && item.volumeInfo.industryIdentifiers && item.volumeInfo.publishedDate)
                         {
                             return {
@@ -47,8 +54,10 @@ $(document).ready(function () {  // only begin once page has loaded
                                 publishedDate: item.volumeInfo.publishedDate,
                                 image: (item.volumeInfo.imageLinks == null ? "" : item.volumeInfo.imageLinks.thumbnail),
                                 description: item.volumeInfo.description,
+                                pages:item.volumeInfo.pageCount,
                             };
                         }
+                        
                     }));
                 }
             });
@@ -78,6 +87,16 @@ $(document).ready(function () {  // only begin once page has loaded
                 var isbnKey = "ISBN:"+ String(ui.item.isbn[0].identifier);
                 var getPageNumber = function(){
                     var apiUrl = "https://openlibrary.org/api/books?bibkeys="+isbnKey+"&jscmd=data&format=json";
+
+                    var pageNumber = $('#page-number');
+                    console.log ("<tr><td>" + ui.item.title + "</td><td>" + ui.item.pages + "</td><td>" +  "</td></tr>")
+                    var rowHTML = "<tr><td>" + ui.item.title + "</td><td>" + ui.item.pages + "</td><td>" +  "</td></tr>"
+                    //var total = document.createElement('h2'); // create a paragraph
+                    
+                    //total.textContent = "number of page is " + data[isbnKey].number_of_pages;
+                    
+                    pageNumber.html(pageNumber.html() + rowHTML);
+
                     fetch(apiUrl)
                     
                     .then(function(response){
@@ -85,14 +104,7 @@ $(document).ready(function () {  // only begin once page has loaded
                         })
                         .then(function(data){
                             console.log(data);
-                            var pageNumber = $('#page-number');
-                            console.log ("<tr><td>" + data[isbnKey].title + "</td><td>" + data[isbnKey].number_of_pages + "</td><td>" + data[isbnKey].pagination + "</td></tr>")
-                            var rowHTML = "<tr><td>" + data[isbnKey].title + "</td><td>" + data[isbnKey].number_of_pages + "</td><td>" + data[isbnKey].pagination + "</td></tr>"
-                            //var total = document.createElement('h2'); // create a paragraph
                             
-                            //total.textContent = "number of page is " + data[isbnKey].number_of_pages;
-                            
-                            pageNumber.html(rowHTML);
                         });
                     console.log(apiUrl)
                 }
