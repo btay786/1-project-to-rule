@@ -77,7 +77,20 @@ $(document).ready(function () {  // only begin once page has loaded
                     console.log(apiUrl)
                 }
                 getPageNumber();
+                getpokemonImage();
             },
             minLength: 5 // set minimum length of text the user must enter
         });
     });
+    function getpokemonImage() {
+        var pokeDex = String(Math.floor(Math.random() * 808))
+        fetch('https://pokeapi.co/api/v2/pokemon/'+pokeDex+'/').then((response) => response.json()).then((data) => {
+            console.log(data);
+            var pokeimage = document.createElement('img');
+            pokeimage.src = data.sprites.front_default;
+            console.log (data.sprites.front_default);
+            document.querySelector("#pokemonImage").append(pokeimage);
+            // document.querySelector("#page-number").append(pokeimage)
+        }).catch((err) => {
+            console.log('pokemon not found', err);
+        })};
