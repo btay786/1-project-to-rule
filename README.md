@@ -1,4 +1,4 @@
-# Bookemons
+# <h1 align="center"><img src="https://raw.githubusercontent.com/btay786/1-project-to-rule/dev/pikachu-pokemon.gif" height="55px" width="55px"> Bookemon <img src="https://raw.githubusercontent.com/btay786/1-project-to-rule/dev/pikachu-pokemon.gif" height="55px" width="55px"></h1>
 
 ## Description
 
