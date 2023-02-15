@@ -21,8 +21,8 @@ The power that's inside ♪
 ## User Story 
 
 AS A Pokemon and book lover <br>
-I WANT to add randomized Pokemons and my favorite books to a reading timeline <br>
-SO THAT I can see how many pages my Pokemon and I need to read everyday <br>
+I WANT to pair my favorite books and generated Pokemons to a reading schedule <br>
+SO THAT I can see how many pages my Pokemons and I need to read every day <br>
 
 
 ## Links
@@ -37,10 +37,8 @@ https://github.com/btay786/1-project-to-rule
 
 ## Usage
 
-![alt-img-description](rel-link)
-![alt-img-description](rel-link)
-![alt-img-description](rel-link)
-![alt-img-description](rel-link)
+![alt=Bookemon-demo-gif](Bookemon-demo.gif)
+
 
 ## Collaborators
 
