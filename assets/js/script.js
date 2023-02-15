@@ -2,6 +2,8 @@ var isbnKey = "ISBN:9780980200447";
 var totalNumberOfPages = 0;
 var readingSpeed = 30; // 30 pages per hours
 var readingDays = (totalNumberOfPages / readingSpeed);
+var books = [];
+var bookList = document.querySelector("#book-list");
 // totalNumberOfPages will be a concatonation of the book collection
 var totalNumberOfPages = ['']
 // can be changed later to diffent speeds
@@ -73,7 +75,7 @@ $(document).ready(function () {  // only begin once page has loaded
             });
 
             console.log(pokeDex);
-            var pokeFinder =   " <img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/" + pokeDex + ".png>";
+            var pokeFinder = " <img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/" + pokeDex + ".png>";
             var getPageNumber = function () {
                 var apiUrl = "https://openlibrary.org/api/books?bibkeys=" + isbnKey + "&jscmd=data&format=json";
                 var pageNumber = $('#page-number');
@@ -90,9 +92,60 @@ $(document).ready(function () {  // only begin once page has loaded
                 console.log(apiUrl)
             }
             getPageNumber();
-            
+            var bookText = {
+                btitle: ui.item.title,
+                bPage: ui.item.pages,
+                bPokemon: pokeFinder,
+            };
+            console.log(bookText);
+            console.log(books);
+            books.push(bookText);
+            storeBooks();
+            renderBooks();
         },
         minLength: 5 // set minimum length of text the user must enter
     });
 });
+
+function renderBooks() {
+    for (var i = 0; i < books.length; i++) {
+        var book = books[i].btitle;
+        var pageHistory = books[i].bPage;
+        var li = document.createElement("page-number");
+        //li.setAttribute("data-index, i");
+        $("#page-number").append("<tr><td>" + book + "</td><td>" + pageHistory + "</td></tr>");
+    }
+}
+
+init()
+// Add click event to bookList element
+function init() {
+    // Get stored books from localStorage
+    var storedBooks = JSON.parse(localStorage.getItem("books"));
+        // If books were retrieved from localStorage, update the books array to it
+    if (storedBooks !== null) {
+        books = storedBooks;
+    }
+    renderBooks();
+}
+
+function storeBooks() {
+    // Stringify and set key in localStorage to books array
+    localStorage.setItem("books", JSON.stringify(books));
+}
+
+bookList.addEventListener("click", function (event) {
+    var element = event.target;
+    // Checks if element is a button
+    if (element.matches("button") === true) {
+          // Get its data-index value and remove the book element from the list
+          var index = element.parentElement.getAttribute("data-index");
+          books.splice(index, 1);
+    // Store updated books in localStorage, re-render the list
+    storeBooks();
+    renderBooks();
+}
+    });
+
+
 
