@@ -1,4 +1,3 @@
-var isbnKey = "ISBN:9780980200447";
 var totalNumberOfPages = 0;
 var readingSpeed = 30; // 30 pages per hours
 var readingDays = (totalNumberOfPages / readingSpeed);
