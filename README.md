@@ -2,21 +2,11 @@
 
 ## Description
 
+The motivation behind this application is to help an indivual finish their favorite books by generating and pairing a random Pokemon to each of their books and storing them into a digital bookshelf using API servers. 
+
 ♪ I wanna be the very best
 
-Like no one ever was
-
-To catch them is my real test
-
-To train them is my cause
-
-I will travel across the land
-
-Searching far and wide
-
-Teach Pokémon to understand
-
-The power that's inside ♪
+Like no one ever was ♪
 
 ## User Story 
 
@@ -33,11 +23,11 @@ https://github.com/btay786/1-project-to-rule
 
 <li> Application Link: </li> 
 
-(url)
+https://btay786.github.io/1-project-to-rule/
 
 ## Usage
 
-![alt=Bookemon-demo-gif](Bookemon-demo.gif)
+![alt=Bookemon-demo-gif]()
 
 
 ## Collaborators
@@ -54,9 +44,9 @@ Nhan Tran <br>
 
 https://bookscalculator.com/pages
 
-<li> Open Library API: </li>
+<li> Google Books API : </li>
 
-https://openlibrary.org/dev/docs/api/books
+https://developers.google.com/books
 
 <li> Pokemon API: </li> 
 
