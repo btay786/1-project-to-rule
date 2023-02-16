@@ -21,7 +21,7 @@ The power that's inside ♪
 ## User Story 
 
 AS A Pokemon and book lover <br>
-I WANT to pair my favorite books and generated Pokemons to a reading schedule <br>
+I WANT to generate and pair random Pokemons with my favorite books to a reading schedule <br>
 SO THAT I can see how many pages my Pokemons and I need to read every day <br>
 
 
