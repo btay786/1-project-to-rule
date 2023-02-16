@@ -11,7 +11,13 @@ var readingSpeed = 30
 var readingDays = totalNumberOfPages / readingSpeed
 // book selection in search
 var selectedBook = $('#txtBookSearch');
+
 $(document).ready(function () {  // only begin once page has loaded
+    $("#submitButton").click(function(){
+        var pagesLeft= books[books.length -1].bPage; 
+        pagesLeft= pagesLeft-$("#pagesRead").val();
+        console.log (pagesLeft);
+    })
     $("#txtBookSearch").autocomplete({ // attach auto-complete functionality to textbox
         // define source of the data
         source: function (request, response) {
@@ -68,7 +74,7 @@ $(document).ready(function () {  // only begin once page has loaded
                 var pokeimage = document.createElement('img');
                 pokeimage.src = data.sprites.front_default;
                 console.log(data.sprites.front_default);
-                document.querySelector("#pokemonImage").append(pokeimage);
+                //document.querySelector("#pokemonImage").append(pokeimage);
                 // document.querySelector("#page-number").append(pokeimage)
             }).catch((err) => {
                 console.log('pokemon not found', err);
@@ -108,12 +114,14 @@ $(document).ready(function () {  // only begin once page has loaded
 });
 
 function renderBooks() {
+    $("#page-number").empty();
     for (var i = 0; i < books.length; i++) {
         var book = books[i].btitle;
         var pageHistory = books[i].bPage;
         var li = document.createElement("page-number");
         //li.setAttribute("data-index, i");
-        $("#page-number").append("<tr><td>" + book + "</td><td>" + pageHistory + "</td></tr>");
+        
+        $("#page-number").append("<tr><td>" + book + "</td><td>" + pageHistory + "</td><td>"+books[i].bPokemon+"</td></tr>");
     }
 }
 
@@ -146,6 +154,3 @@ bookList.addEventListener("click", function (event) {
     renderBooks();
 }
     });
-
-
-
