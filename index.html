@@ -1,21 +1,113 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="./assets/css/style.css">
-        <title>Project 1</title>
-        
-    </head>
-    <body>
-        <h1>Getting number of page from a book</h1>
-        <h2 id = "page-number">
+<html lang="en">
 
-        </h2>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title> Bookworms </title>
+</head>
+
+<body>
+    <header class="hero has-background-primary-dark">
+        <div class="hero-body">
+            <p class="title has-text-centered"><img src="pikachu-pokemon.gif" height="60px" width="60px"> Bookemon <img src="pikachu-pokemon.gif" height="60px" width="60px"></p>
+        </div>
+    </header>
+    <main class="container">
+        <div class="card">
+            <div class="card-content">
+                <div class="field">
+                    <label class="label">Enter a book title and Select from list</label>
+                    <div class="control">
+                        <input class="input" id="txtBookSearch" type="text">
+                    </div>
+                </div>
+            </div>
+            
+
+            
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="content">
+                            Book Details
+                        </p>
+                    </div>
+
+                </div>
 
 
-	<script src="./assets/js/script.js"></script>
 
-    </body>
+                <div class="card">
+                    <div id="divDescription" class="p-5"></div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        
+
+                        <div class="field">
+                            <label class="label">Start Date</label>
+                            <div class="control">
+                                <input class="input" type="date">
+
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Finish Date</label>
+                            <div class="control">
+                                <input class="input" type="date">
+
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="field">
+                    <label class="label">Number of pages read today</label>
+                    <div class="control">
+                      <input id="pagesRead" class="input" type="text" placeholder="Text input">
+                    </div>
+                  </div>
+                <button id= "submitButton" class="button is-submit is-fullwidth is-primary is-large">Enter Number of pages read</button>
+
+                <div class="card">
+                    <div id="divResponse" class="p-5"></div>
+                </div>
+
+
+            </div>
+
+
+            <div class="column">
+                <table class="table is-fullwidth is-striped " id="table">
+
+                    <thead>
+                        <tr>
+                            <th><abbr>Book Title</abbr></th>
+                            <th><abbr># of pages</abbr></th>
+                            <th><abbr> Pokemon </abbr></th>
+                        </tr>
+                    </thead>
+                    <tbody id="page-number">
+
+                    </tbody>
+                </table>
+                <ul id ="pokemonImage"></ul>
+            </div>
+            <div id= "book-list"></div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
 </html>
