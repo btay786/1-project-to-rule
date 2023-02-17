@@ -27,7 +27,7 @@ https://btay786.github.io/1-project-to-rule/
 
 ## Usage
 
-![alt=Bookemon-demo-gif]()
+![alt=Bookemon-demo-gif](Bookemon-Demo-1.1.gif)
 
 
 ## Collaborators
